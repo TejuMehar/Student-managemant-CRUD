@@ -22,9 +22,15 @@ exports.getAllStudents = async (req, res) => {
 };
 
 
-
-
-
+exports.getStudentById = async (req, res) => {
+  try {
+    const student = await Student.findById(req.params.id);
+    if (!student) return res.status(404).send("Student not found");
+    res.json(student);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
 
 // Update student
 exports.updateStudent = async (req, res) => {
