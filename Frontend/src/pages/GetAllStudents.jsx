@@ -29,6 +29,29 @@ function GetAllStudents() {
     navigate(`/update/${id}`);
      };
 
+
+
+     const handleDelete = async (id) => {
+        if (window.confirm("Are you sure you want to delete this student?")) {
+            try {
+                const res = await fetch(`http://localhost:5500/students/${id}`, {
+                method: "DELETE",
+              });
+
+          if (res.ok) {
+               alert("✅ Student deleted successfully!");
+              // Remove student from state to update UI immediately
+               setStudents(students.filter(student => student._id !== id));
+        } else {
+          alert("❌ Failed to delete student");
+        }
+       } catch (error) {
+      console.error(error);
+      alert("⚠ Something went wrong");
+    }
+  }
+};
+
   return (
    
    <>
