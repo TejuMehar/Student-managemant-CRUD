@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function GetAllStudents() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Fetch students from backend
   useEffect(() => {
@@ -20,6 +22,12 @@ function GetAllStudents() {
 
     fetchStudents();
   }, []);
+
+
+
+    const handleUpdate = (id) => {
+    navigate(`/update/${id}`);
+     };
 
   return (
    
@@ -41,7 +49,7 @@ function GetAllStudents() {
       >
         <thead>
           <tr style={{ backgroundColor: "#4f46e5", color: "white" }}>
-            <th style={{ padding: "10px", border: "1px solid #ddd" }}>#</th>
+            <th style={{ padding: "10px", border: "1px solid #ddd" }}>Sr No:</th>
             <th style={{ padding: "10px", border: "1px solid #ddd" }}>Name</th>
             <th style={{ padding: "10px", border: "1px solid #ddd" }}>Roll No</th>
             <th style={{ padding: "10px", border: "1px solid #ddd" }}>Class</th>
@@ -61,19 +69,22 @@ function GetAllStudents() {
               <td style={{ padding: "10px", border: "1px solid #ddd" }}>{student.class}</td>
               <td style={{ padding: "10px", border: "1px solid #ddd" }}>{student.section}</td>
               <td style={{ padding: "10px", border: "1px solid #ddd" }}>
-                <button
-                  style={{
-                    marginRight: "10px",
-                    padding: "5px 10px",
-                    backgroundColor: "#f59e0b",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => handleUpdate(student._id)}
-                >
-                  Update
+               <button
+                   style={{
+                             marginRight: "10px",
+                             padding: "5px 10px",
+                              backgroundColor: "#f59e0b",
+                              color: "white",
+                              border: "none",
+                              borderRadius: "5px",
+                              cursor: "pointer",
+                             transition: "0.3s",
+                             }}
+                             onClick={() => handleUpdate(student._id)}
+                             onMouseOver={(e) => (e.target.style.backgroundColor = "#d97706")} // darken on hover
+                              onMouseOut={(e) => (e.target.style.backgroundColor = "#f59e0b")} // revert color
+                             >
+                             Update
                 </button>
                 <button
                   style={{

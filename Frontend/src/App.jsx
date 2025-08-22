@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<GetAllStudents />} />
           <Route path="/add" element={<AddStudent />} />
-          <Route path="/update" element={<UpdateStudent />} />
+          <Route path="/update/:id" element={<UpdateStudent />} />
           <Route path="/delete" element={<DeleteStudent />} />
         </Routes>
       </div>
