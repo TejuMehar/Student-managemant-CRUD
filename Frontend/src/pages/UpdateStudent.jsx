@@ -14,7 +14,7 @@ function UpdateStudent() {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+   useEffect(() => {
     // Fetch student info using the ID
     fetch(`http://localhost:5500/students/${id}`)
       .then(res => res.json())
